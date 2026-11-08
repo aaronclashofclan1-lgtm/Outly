@@ -45,4 +45,4 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "${{ github.ref_name }}" release/Outly.exe release/SHA256.txt Outly-source.zip --generate-notes --title "Outly ${{ github.ref_name }}"
+          gh release create "${{ github.ref_name }}" release/Outly.exe release/SHA256.txt docs/USER_GUIDE.pdf Outly-source.zip --generate-notes --title "Outly ${{ github.ref_name }}"
