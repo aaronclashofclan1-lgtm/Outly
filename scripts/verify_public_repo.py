@@ -60,6 +60,15 @@ def main(root_arg: str = ".") -> int:
         errors.append("LICENSE is missing")
     if not (root / "docs" / "USER_GUIDE.pdf").is_file():
         errors.append("docs/USER_GUIDE.pdf is missing")
+    for rel in (
+        "outly/modeles/config.yaml",
+        "outly/modeles/env.modele",
+        "outly/modeles/keywords.txt",
+        "outly/modeles/positioning.md",
+        "outly/modeles/seeds.txt",
+    ):
+        if not (root / rel).is_file():
+            errors.append(f"required first-run template is missing: {rel}")
     print(f"scanned {files} files under {root}")
     if errors:
         print("FAILED")

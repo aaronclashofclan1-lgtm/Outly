@@ -33,10 +33,10 @@ Outly-partage/
 Application Outly/
 Outly-source.zip
 _comparateur.png
-config.yaml
-positioning.md
-seeds.txt
-keywords.txt
+/config.yaml
+/positioning.md
+/seeds.txt
+/keywords.txt
 
 # OS/editor noise
 .DS_Store
