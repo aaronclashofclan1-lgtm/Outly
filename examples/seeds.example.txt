@@ -1,0 +1,16 @@
+# Competitor channels you already know.
+# One entry per line. Accepted formats:
+#   @handle
+#   https://www.youtube.com/@handle
+#   https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx
+#   UCxxxxxxxxxxxxxxxxxxxxxx            (raw ID)
+#   https://www.youtube.com/user/old_name
+#
+# Not resolvable by the API: custom /c/... URLs.
+# Convert them to @handle or a channel ID before running.
+#
+# Lines starting with # are ignored.
+
+# @example-channel
+# https://www.youtube.com/@another-channel
+# https://www.youtube.com/channel/UCxxxxxxxxxxxxxxxxxxxxxx

@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/outly/intro_analysis.schema.json",
+  "title": "Analyse de l'intro d'une vidéo outlier",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "intro_debut_s",
+    "intro_fin_s",
+    "hook_texte",
+    "resume",
+    "promesse",
+    "techniques"
+  ],
+  "properties": {
+    "intro_debut_s": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 3600,
+      "description": "Début de l'intro, en secondes depuis le début de la vidéo."
+    },
+    "intro_fin_s": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 7200,
+      "description": "Fin de l'intro, en secondes depuis le début de la vidéo."
+    },
+    "hook_texte": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 700,
+      "description": "Citation exacte et courte de l'accroche."
+    },
+    "resume": {
+      "type": "string",
+      "minLength": 30,
+      "maxLength": 800,
+      "description": "Ce que fait l'intro concrètement."
+    },
+    "promesse": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 500,
+      "description": "Promesse ou bénéfice annoncé au spectateur."
+    },
+    "techniques": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 160
+      }
+    }
+  }
+}

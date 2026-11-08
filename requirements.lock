@@ -1,0 +1,21 @@
+# Fully resolved runtime environment validated for the v1.0.0 audit.
+# Install with: python -m pip install -r requirements.lock
+attrs==26.1.0
+certifi==2026.10.23
+charset-normalizer==3.5.2
+customtkinter==6.0.0
+darkdetect==0.8.0
+defusedxml==0.7.1
+idna==3.20
+jsonschema==4.26.0
+jsonschema-specifications==2025.9.1
+pillow==13.0.0
+pypdf==6.21.4
+python-dotenv==1.2.4
+PyYAML==6.0.3
+referencing==0.37.0
+requests==2.34.2
+rpds-py==2026.9.1
+tzdata==2026.6
+urllib3==2.8.0
+youtube-transcript-api==1.2.4

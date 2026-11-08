@@ -1,0 +1,11 @@
+Outly is an independent, local-first research tool. It is not affiliated with,
+endorsed by, or sponsored by YouTube, Google, or any LLM provider.
+
+YouTube and Google are trademarks of Google LLC. Other product names are
+trademarks of their respective owners. The MIT license covers the Outly source
+code, not third-party services, APIs, data, or trademarks.
+
+Outly uses public YouTube Data API v3 endpoints and optional third-party
+services. You are responsible for complying with their terms, quotas, and data
+retention rules. Do not publish API-derived datasets as if they were official
+YouTube data.

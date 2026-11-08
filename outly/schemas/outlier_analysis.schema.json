@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/outly/outlier_analysis.schema.json",
+  "title": "Analyse d'une vidéo outlier",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["accroche", "structure", "explication"],
+  "properties": {
+    "accroche": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 400,
+      "description": "Ce qui retient l'attention dans les premières secondes."
+    },
+    "structure": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["etape", "description"],
+        "properties": {
+          "etape": { "type": "string", "minLength": 3, "maxLength": 80 },
+          "description": { "type": "string", "minLength": 10, "maxLength": 400 }
+        }
+      }
+    },
+    "explication": {
+      "type": "string",
+      "minLength": 60,
+      "maxLength": 800,
+      "description": "Hypothèses sur ce qui explique la performance au-dessus de la médiane."
+    },
+    "reutilisable": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "type": "string", "minLength": 5, "maxLength": 300 }
+    }
+  }
+}

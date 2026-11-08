@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use Outly in research or content, cite this repository."
+title: "Outly: local-first YouTube competitor intelligence"
+type: software
+authors:
+  - name: "Outly contributors"
+version: 1.0.0
+date-released: 2026-11-08
+license: MIT
+repository-code: "https://github.com/aaronclashofclan1-lgtm/Outly"
+abstract: >-
+  Outly discovers YouTube competitor channels, scores niche proximity, detects
+  outlier videos, and produces local audits, strategy, hooks, ideas, and reports.
+keywords:
+  - YouTube
+  - competitor analysis
+  - content strategy
+  - local-first
+  - SQLite

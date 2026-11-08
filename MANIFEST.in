@@ -1,0 +1,9 @@
+include README.md LICENSE NOTICE CHANGELOG.md SECURITY.md
+include requirements.txt requirements-dev.txt requirements.lock
+include Outly.spec lanceur_exe.py lancer-interface.bat
+recursive-include outly *.py *.sql *.json *.yaml *.txt *.md *.png *.ico
+recursive-include guides *.md
+recursive-include docs *.md *.html *.pdf
+recursive-include assets *.png *.ico
+recursive-include examples *.yaml *.md *.txt
+recursive-include scripts *.py *.ps1

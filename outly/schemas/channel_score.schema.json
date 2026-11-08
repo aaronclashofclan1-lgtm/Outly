@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/outly/channel_score.schema.json",
+  "title": "Score de proximité d'une chaîne",
+  "description": "Réponse attendue du LLM pour chaque chaîne évaluée. Toute propriété supplémentaire est refusée : cela force un format stable et évite les réponses bavardes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "score_proximite",
+    "recouvrement_audience",
+    "format_detecte",
+    "langue",
+    "justification",
+    "risques"
+  ],
+  "properties": {
+    "score_proximite": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Proximité de niche avec le positionnement de la marque."
+    },
+    "recouvrement_audience": {
+      "type": "string",
+      "enum": ["faible", "partiel", "fort"]
+    },
+    "format_detecte": {
+      "type": "string",
+      "enum": ["voix_off", "face_camera", "mixte", "autre", "indetermine"]
+    },
+    "langue": {
+      "type": "string",
+      "enum": ["fr", "en", "autre"]
+    },
+    "justification": {
+      "type": "string",
+      "minLength": 60,
+      "maxLength": 600
+    },
+    "risques": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 300
+      }
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Intention d'un sujet de vidéo",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sujet_reformule",
+    "public_attendu",
+    "intention_createur",
+    "questions_utiles",
+    "requetes"
+  ],
+  "properties": {
+    "sujet_reformule": {"type": "string", "minLength": 3, "maxLength": 240},
+    "public_attendu": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {"type": "string", "minLength": 3, "maxLength": 240}
+    },
+    "intention_createur": {"type": "string", "minLength": 3, "maxLength": 700},
+    "questions_utiles": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {"type": "string", "minLength": 5, "maxLength": 240}
+    },
+    "requetes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 10,
+      "items": {"type": "string", "minLength": 3, "maxLength": 140}
+    }
+  }
+}

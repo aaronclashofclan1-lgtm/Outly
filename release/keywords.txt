@@ -1,0 +1,12 @@
+# Keywords for your niche, one expression per line.
+# Each line triggers a search.list call (one call from the search bucket,
+# 100 calls/day maximum). Empty lines and comments are ignored.
+#
+# Tips:
+#   - prefer expressions your audience would actually type;
+#   - 10 to 20 expressions are enough for one run;
+#   - the | (OR) operator and -word exclusions are accepted in an expression.
+
+# video editing for beginners
+# davinci resolve color grading
+# freelance video editor

@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Diagnostic des dernières vidéos et ajustements de stratégie",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["synthese", "videos", "ajustements_strategie", "tests_prochains", "limites"],
+  "properties": {
+    "synthese": {"type": "string", "minLength": 20, "maxLength": 1200},
+    "videos": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["video_id", "titre", "verdict", "causes", "action_prioritaire"],
+        "properties": {
+          "video_id": {"type": "string", "minLength": 1, "maxLength": 80},
+          "titre": {"type": "string", "minLength": 3, "maxLength": 180},
+          "verdict": {"type": "string", "enum": ["sous-performe", "fragile", "au niveau", "trop récent"]},
+          "causes": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["cause", "preuve", "hypothese", "test"],
+              "properties": {
+                "cause": {
+                  "type": "string",
+                  "enum": ["miniature", "sujet", "accroche", "rythme/montage", "voix/présence", "titre", "durée/format", "audience/publication", "données insuffisantes"]
+                },
+                "preuve": {"type": "string", "minLength": 3, "maxLength": 400},
+                "hypothese": {"type": "boolean"},
+                "test": {"type": "string", "minLength": 5, "maxLength": 400}
+              }
+            }
+          },
+          "action_prioritaire": {"type": "string", "minLength": 5, "maxLength": 400}
+        }
+      }
+    },
+    "ajustements_strategie": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["axe", "avant", "apres", "pourquoi", "effort"],
+        "properties": {
+          "axe": {"type": "string", "minLength": 3, "maxLength": 120},
+          "avant": {"type": "string", "minLength": 3, "maxLength": 400},
+          "apres": {"type": "string", "minLength": 3, "maxLength": 400},
+          "pourquoi": {"type": "string", "minLength": 5, "maxLength": 500},
+          "effort": {"type": "string", "enum": ["faible", "moyen", "élevé"]}
+        }
+      }
+    },
+    "tests_prochains": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["test", "critere_reussite", "delai"],
+        "properties": {
+          "test": {"type": "string", "minLength": 5, "maxLength": 400},
+          "critere_reussite": {"type": "string", "minLength": 3, "maxLength": 300},
+          "delai": {"type": "string", "minLength": 2, "maxLength": 120}
+        }
+      }
+    },
+    "limites": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 8,
+      "items": {"type": "string", "minLength": 5, "maxLength": 400}
+    }
+  }
+}

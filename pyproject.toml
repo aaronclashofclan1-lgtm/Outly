@@ -1,0 +1,78 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "outly"
+version = "1.0.0"
+description = "Local-first YouTube competitor intelligence, outlier detection, and content strategy."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Outly contributors"}]
+keywords = ["youtube", "competitor-analysis", "content-strategy", "sqlite", "local-first"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Win32 (MS Windows)",
+    "Intended Audience :: Content Creators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Multimedia :: Video",
+]
+dependencies = [
+    "requests==2.34.2",
+    "PyYAML==6.0.3",
+    "jsonschema==4.26.0",
+    "python-dotenv==1.2.4",
+    "customtkinter==6.0.0",
+    "pypdf==6.21.4",
+    "pillow==13.0.0",
+    "youtube-transcript-api==1.2.4",
+    "tzdata==2026.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.2.0",
+    "pytest-cov==7.1.0",
+    "ruff==0.17.4",
+    "mypy==2.4.1",
+    "pip-audit==2.10.1",
+    "pyinstaller==6.22.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/aaronclashofclan1-lgtm/Outly"
+Documentation = "https://github.com/aaronclashofclan1-lgtm/Outly/tree/main/docs"
+Issues = "https://github.com/aaronclashofclan1-lgtm/Outly/issues"
+Security = "https://github.com/aaronclashofclan1-lgtm/Outly/security"
+
+[project.scripts]
+outly = "outly.cli:main"
+outly-gui = "outly.gui:main"
+
+[tool.setuptools.packages.find]
+include = ["outly*"]
+
+[tool.setuptools.package-data]
+outly = ["schema.sql", "schemas/*.json", "modeles/*", "gui/*.png", "gui/*.ico", "gui/assets/**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+
+[tool.ruff.lint]
+# CI gates only on correctness-critical rules; the full backlog is documented.
+select = ["E9", "F63", "F7", "F82"]
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true

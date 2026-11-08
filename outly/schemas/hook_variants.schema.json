@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local/outly/hook_variants.schema.json",
+  "title": "Variantes d'accroches adaptées à un sujet",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["analyse", "variantes"],
+  "properties": {
+    "analyse": {
+      "type": "string",
+      "minLength": 40,
+      "maxLength": 2000,
+      "description": "Points communs des intros et transposition au sujet."
+    },
+    "variantes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "titre",
+          "hook",
+          "duree_secondes",
+          "technique",
+          "inspire_de",
+          "pourquoi"
+        ],
+        "properties": {
+          "titre": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 120
+          },
+          "hook": {
+            "type": "string",
+            "minLength": 10,
+            "maxLength": 800
+          },
+          "duree_secondes": {
+            "type": "integer",
+            "minimum": 3,
+            "maximum": 60
+          },
+          "technique": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 160
+          },
+          "inspire_de": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 2,
+            "items": {
+              "type": "string",
+              "minLength": 5,
+              "maxLength": 40
+            }
+          },
+          "pourquoi": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 500
+          }
+        }
+      }
+    }
+  }
+}

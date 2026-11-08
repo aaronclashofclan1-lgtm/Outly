@@ -1,0 +1,56 @@
+# Secrets - never commit
+.env
+.env.*
+!.env.example
+
+# Local data and generated output
+data/
+out/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.log
+data/*.json
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+*.egg-info/
+build/
+dist/
+
+# Packaged/personal folders from the original author's workspace
+Outly-app/
+Outly-partage/
+Application Outly/
+Outly-source.zip
+_comparateur.png
+config.yaml
+positioning.md
+seeds.txt
+keywords.txt
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Keep the curated release payload
+!release/
+!release/**
+
+# Preserve the empty portable-release folders
+!release/data/
+!release/data/.gitkeep
+!release/out/
+!release/out/.gitkeep

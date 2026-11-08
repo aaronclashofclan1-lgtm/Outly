@@ -1,0 +1,13 @@
+# Pinned runtime dependencies. Python 3.11+ is required.
+requests==2.34.2
+PyYAML==6.0.3
+jsonschema==4.26.0
+python-dotenv==1.2.4
+tzdata==2026.6
+customtkinter==6.0.0
+pypdf==6.21.4
+pillow==13.0.0
+youtube-transcript-api==1.2.4
+pytest==9.2.0
+
+# The Windows executable is built with requirements-dev.txt.

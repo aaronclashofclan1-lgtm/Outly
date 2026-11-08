@@ -1,0 +1,103 @@
+# ===========================================================================
+# Outly configuration
+# Secrets are NOT stored here. They live in .env, which is excluded from Git.
+# ===========================================================================
+
+youtube:
+  region_code: FR              # first search pass (ISO 3166-1 alpha-2)
+  relevance_language: fr       # language of the first pass; the global pass omits it
+  batch_size: 50               # IDs per API call (the API maximum)
+  videos_per_channel: 30       # analysis window: the channel's latest N videos
+
+  # --- Quota budgets -----------------------------------------------------
+  # Since June 2026, search.list has its own bucket: 100 calls/day.
+  # Every other endpoint shares 10,000 units/day.
+  # These are CALLS: with the international pass, each query costs two.
+  max_search_calls_per_run: 20    # therefore 10 France + world queries
+  max_search_calls_per_day: 90    # intentional margin below the 100 limit
+  max_units_per_run: 2000
+  max_units_per_day: 8000         # intentional margin below the 10,000 limit
+
+  # --- Cheap filters (no quota) ------------------------------------------
+  subscriber_min: 1000            # ignore channels that are too small
+  subscriber_max: 5000000         # ignore channels that are too large
+  min_channel_age_days: 180       # ignore recently created channels
+  max_candidates_per_run: 400     # maximum candidates retained in the database
+  analysis_limit: 60              # channels enriched (playlist + videos) per run
+
+# --- My channel ----------------------------------------------------------
+# "Start from my channel" uses its latest videos (2 units), its featured
+# channels (1 unit), and @handles found in its descriptions (0 units).
+moi:
+  chaine: ""                      # @handle, URL, or UC... ID of YOUR channel
+  recherche_internationale: true  # each query: France, then worldwide (2 calls)
+
+discovery:
+  use_channel_sections: true      # featured channels of seeds (1 unit/seed)
+  use_description_links: true     # @handles found in descriptions already read
+  require_keyword_hit: false      # true = only accept channels mentioning a keyword
+
+cache:
+  # The YouTube Developer Policies require refreshing or deleting API data
+  # within 30 days. The application enforces that ceiling.
+  ttl_channel_days: 7
+  ttl_videos_days: 1
+  ttl_search_days: 3
+  max_ttl_days: 30                # legal ceiling: cannot be exceeded
+
+metrics:
+  short_max_seconds: 180          # current YouTube Shorts duration limit
+  min_videos_for_metrics: 3       # below this, data is considered insufficient
+
+llm:
+  max_channels_per_run: 30        # maximum channels sent to the LLM per run
+  temperature: 0                  # 0 = reproducible answers
+  timeout_s: 60
+  max_retries: 2
+  requests_per_minute: 8          # local rate limit; lower it if you receive 429s
+  json_mode: auto                 # auto | json_object | none
+  min_score_keep: 50              # retention threshold in the report
+  fallback_enabled: true          # use LLM_FALLBACK_* if the primary fails
+
+classement:
+  min_retenues: 5                 # always propose at least N analyzable channels
+  seuil_local: 40                 # local proximity threshold when the LLM is down
+
+outliers:
+  max_channels: 3                 # channels analyzed in depth
+  per_channel: 3                  # videos analyzed per channel
+  max_chars_transcription: 12000  # excerpt sent to the LLM
+
+transcripts:
+  enabled: false                  # unofficial transcript reader: use at your own risk
+  languages: [fr, en]
+
+# --- Hooks (opening lines) ----------------------------------------------
+# Analyze outlier intros from their transcripts, then write opening variants
+# for the subject below. Active notes from the Notes page are also sent.
+# enabled controls automatic generation at the end of a full run; the
+# `outly hooks --sujet "..."` command works even when it is false.
+hooks:
+  enabled: false                  # true = generate hooks after every watch run
+  sujet: ""                       # video title or precise subject to hook
+  variants: 6                     # requested variants (1 to 12)
+  max_videos: 6                   # outlier intros analyzed (1 to 20)
+  max_chars_transcription: 12000  # timestamped transcript sent to the LLM
+
+output:
+  dir: out
+  csv_separator: ";"              # ";" for French Excel, "," for international
+  csv_encoding: utf-8-sig         # BOM keeps accents readable in Excel
+  report_top: 10                  # channels detailed in report.md
+
+# --- Email reports -------------------------------------------------------
+# Reports always leave from outly.analyze@gmail.com (Gmail, STARTTLS).
+# Only the Gmail app password lives in .env (SMTP_PASSWORD).
+# Leave frequence: jamais to disable sending completely.
+email:
+  destinataire: ""                # address that receives the reports
+  frequence: jamais               # jamais | quotidien | hebdomadaire | mensuel
+  heure: "08:00"                  # local time of the send check
+  jour_semaine: 1                 # 1 = Monday ... 7 = Sunday (weekly)
+  jour_mois: 1                    # 1 to 28 (monthly: avoids months without 29-31)
+  joindre_csv: true               # attach channels.csv and outliers.csv

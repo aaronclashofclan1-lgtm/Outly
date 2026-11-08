@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Estimation de production d'une vidéo",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["temps_total_heures", "difficulte", "phases", "materiel", "logiciels", "equipe", "tournage", "post_production", "footage", "budget_eur", "risques", "checklist", "hypotheses"],
+  "properties": {
+    "temps_total_heures": {"type": "number", "minimum": 0.5, "maximum": 200},
+    "difficulte": {"type": "integer", "minimum": 1, "maximum": 5},
+    "phases": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["phase", "heures", "taches"],
+        "properties": {
+          "phase": {"type": "string", "minLength": 3, "maxLength": 100},
+          "heures": {"type": "number", "minimum": 0, "maximum": 100},
+          "taches": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string", "minLength": 3, "maxLength": 300}}
+        }
+      }
+    },
+    "materiel": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["categorie", "besoin", "quantite", "budget_eur"],
+        "properties": {
+          "categorie": {"type": "string", "minLength": 3, "maxLength": 100},
+          "besoin": {"type": "string", "minLength": 3, "maxLength": 300},
+          "quantite": {"type": "string", "minLength": 1, "maxLength": 80},
+          "budget_eur": {"type": "string", "minLength": 1, "maxLength": 80}
+        }
+      }
+    },
+    "logiciels": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string", "minLength": 2, "maxLength": 120}},
+    "equipe": {"type": "string", "minLength": 3, "maxLength": 200},
+    "tournage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duree_heures", "lieux", "plans", "conseils"],
+      "properties": {
+        "duree_heures": {"type": "number", "minimum": 0.25, "maximum": 60},
+        "lieux": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string", "minLength": 2, "maxLength": 160}},
+        "plans": {"type": "array", "minItems": 1, "maxItems": 20, "items": {"type": "string", "minLength": 3, "maxLength": 300}},
+        "conseils": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string", "minLength": 3, "maxLength": 300}}
+      }
+    },
+    "post_production": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["duree_heures", "etapes", "ton"],
+      "properties": {
+        "duree_heures": {"type": "number", "minimum": 0.25, "maximum": 80},
+        "etapes": {"type": "array", "minItems": 2, "maxItems": 10, "items": {"type": "string", "minLength": 3, "maxLength": 300}},
+        "ton": {"type": "string", "minLength": 3, "maxLength": 300}
+      }
+    },
+    "footage": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 15,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["type", "description", "quantite", "duree"],
+        "properties": {
+          "type": {"type": "string", "enum": ["plan principal", "b-roll", "insert", "archive", "graphique", "photo"]},
+          "description": {"type": "string", "minLength": 3, "maxLength": 300},
+          "quantite": {"type": "string", "minLength": 1, "maxLength": 80},
+          "duree": {"type": "string", "minLength": 1, "maxLength": 80}
+        }
+      }
+    },
+    "budget_eur": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum", "maximum", "commentaire"],
+      "properties": {
+        "minimum": {"type": "number", "minimum": 0},
+        "maximum": {"type": "number", "minimum": 0},
+        "commentaire": {"type": "string", "minLength": 3, "maxLength": 400}
+      }
+    },
+    "risques": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string", "minLength": 5, "maxLength": 300}},
+    "checklist": {"type": "array", "minItems": 3, "maxItems": 20, "items": {"type": "string", "minLength": 3, "maxLength": 200}},
+    "hypotheses": {"type": "array", "minItems": 1, "maxItems": 8, "items": {"type": "string", "minLength": 5, "maxLength": 300}}
+  }
+}

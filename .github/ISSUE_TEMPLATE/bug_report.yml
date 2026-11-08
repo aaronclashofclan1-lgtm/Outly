@@ -1,0 +1,72 @@
+name: Bug report
+description: Report a reproducible problem with Outly.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include API keys, OAuth tokens, SMTP passwords, `.env` contents,
+        personal databases, or private channel analytics. Redact all logs.
+  - type: input
+    id: version
+    attributes:
+      label: Outly version
+      placeholder: "1.0.0"
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: "Windows 11 24H2"
+    validations:
+      required: true
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Surface
+      options:
+        - Windows executable
+        - Python source / CLI
+        - Desktop GUI
+        - Documentation
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact command or screen, in order.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Include the error text, not a screenshot of secrets.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted logs
+      description: Remove keys, tokens, paths with personal names, and channel data.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I removed all secrets and personal data.
+          required: true
+        - label: I searched existing issues.
+          required: true
+        - label: This is not a security vulnerability (those go through SECURITY.md).
+          required: true

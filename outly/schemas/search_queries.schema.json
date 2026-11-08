@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Requêtes de recherche concurrentielle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requetes"],
+  "properties": {
+    "requetes": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 80
+      }
+    }
+  }
+}

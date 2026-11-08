@@ -1,0 +1,48 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+      - name: Verify source tree
+        run: python scripts/verify_public_repo.py .
+      - name: Tests
+        run: python -m pytest -q
+      - name: Build executable
+        run: |
+          New-Item -ItemType Directory -Force build | Out-Null
+          Copy-Item assets/logo.ico build/outly.ico -Force
+          python -m PyInstaller --noconfirm --clean --log-level WARN Outly.spec
+          Copy-Item dist/Outly.exe release/Outly.exe -Force
+      - name: Hash
+        shell: pwsh
+        run: |
+          $hash = (Get-FileHash release/Outly.exe -Algorithm SHA256).Hash.ToLower()
+          "SHA256=$hash" | Out-File -FilePath release/SHA256.txt -Encoding ascii
+          Get-Content release/SHA256.txt
+      - name: Source archive
+        shell: pwsh
+        run: |
+          git archive --format=zip --output=Outly-source.zip HEAD
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" release/Outly.exe release/SHA256.txt Outly-source.zip --generate-notes --title "Outly ${{ github.ref_name }}"
