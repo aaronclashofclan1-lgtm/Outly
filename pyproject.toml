@@ -31,7 +31,7 @@ dependencies = [
     "customtkinter==6.0.0",
     "pypdf==6.21.4",
     "pillow==13.0.0",
-    "youtube-transcript-api==1.2.4",
+    "youtube-transcript-api==1.2.5",
     "tzdata==2026.6",
 ]
 
