@@ -187,7 +187,7 @@ reproducible from the pinned requirements; it is not code-signed.
 python -m pytest -q
 python -m ruff check . --select E9,F63,F7,F82
 python -m pip check
-python -m pip-audit -r requirements.txt
+python -m pip_audit -r requirements.txt
 ```
 
 The public test suite is **365 tests**, with HTTP transports, clocks, and

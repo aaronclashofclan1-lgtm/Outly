@@ -9,7 +9,7 @@ Run from the repository root on Windows.
 - [ ] `python -m pytest -q` passes.
 - [ ] `python -m ruff check . --select E9,F63,F7,F82` passes.
 - [ ] `python -m pip check` passes.
-- [ ] `python -m pip-audit -r requirements.txt` reports no known vulnerability.
+- [ ] `python -m pip_audit -r requirements.txt` reports no known vulnerability.
 - [ ] The version is updated in `pyproject.toml`, `outly/__init__.py`,
       `CHANGELOG.md`, and `CITATION.cff`.
 - [ ] `docs/USER_GUIDE.md` and `docs/USER_GUIDE.pdf` match.

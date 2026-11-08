@@ -33,6 +33,6 @@ jobs:
       - name: Dependency consistency
         run: python -m pip check
       - name: Dependency audit
-        run: python -m pip-audit -r requirements.txt
+        run: python -m pip_audit -r requirements.txt
       - name: Public tree scan
         run: python scripts/verify_public_repo.py .
