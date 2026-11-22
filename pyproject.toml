@@ -29,7 +29,7 @@ dependencies = [
     "jsonschema==4.26.0",
     "python-dotenv==1.2.4",
     "customtkinter==6.0.0",
-    "pypdf==6.21.4",
+    "pypdf==7.1.1",
     "pillow==13.0.0",
     "youtube-transcript-api==1.2.4",
     "tzdata==2026.6",
